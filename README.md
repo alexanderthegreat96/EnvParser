@@ -32,7 +32,7 @@ package main
 
 import (
     "fmt"
-    "your-module-path/envparser" // replace with actual module path
+    "github.com/alexanderthegreat96/envparser" 
 )
 
 func main() {
@@ -41,7 +41,7 @@ func main() {
     // if your file is not in the project root, set the second argument to false
     // third argument allows you to specify additional env files to be parsed
     parser := envparser.NewEnvParser()
-    
+
     // Get a variable
     // first argument is variable name
     // second argument type to be converted to
