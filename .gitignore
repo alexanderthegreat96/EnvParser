@@ -1,0 +1,73 @@
+# Go binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Test binary, build output, and other generated files
+/build/
+bin/
+out/
+dist/
+*.test
+*.out
+
+# Vendor directory
+/vendor/
+
+# Go workspace file
+go.work
+
+# IDE and Editor specific files
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# JetBrains IDEs
+.idea/
+*.iml
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+# Vim
+*.swp
+*.swo
+*.sublime-*
+
+# Emacs
+*~
+\#*\#
+
+# OS generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+Desktop.ini
+
+# Logs
+*.log
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+*.env
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.orig
+
+# Coverage files
+*.cover
+*.cov
+
+# Ignore dependencies
+go.sum
+go.mod
