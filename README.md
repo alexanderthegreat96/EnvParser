@@ -14,7 +14,6 @@
   - [GetEncryptedValue](#getencryptedvalue)
 - [Error Handling](#error-handling)
 - [Variable Substitution](#variable-substitution)
-- [Encryption and Decryption](#encryption-and-decryption)
 - [License](#license)
 
 ## Installation
@@ -54,3 +53,71 @@ func main() {
     }
 }
 ```
+## Functions
+Below, there is a list with all the available functions.
+
+### NewEnvParser
+```go
+func NewEnvParser(params ...interface{}) *EnvData
+```
+Will initialize the parser itself. It accepts the following arguments:
+ - environemt file name -> default is .env
+ - use root path -> default is true (set to false if your file is somewhere else and not in your project)
+ - env files -> you may specify an array of env file names. they will be merged together and you will have access to all of them
+
+```go
+parser := envparser.NewEnvParser("my.env", true, []string{"another.env", "another_one.env"})
+```
+
+### GetVars
+```go
+func (env *EnvData) GetVars() map[interface{}]interface{}
+```
+Will return a map with all the variables found across your specified environment file(s). It will also `auto-convert` them to the `correct type`.
+
+### GetValue
+```go
+func (env *EnvData) GetValue(which, kind string, defaultValue interface{}) (interface{}, error)
+```
+This function will grab a value from the file by key, will convert it to the type you specify and if not found, will return the default value specified.
+Arguments:
+ - key -> your variable name
+ - kind -> what do you want this converted to? (check the types below)
+ - default value -> if not found, will default to this
+
+Supported types:
+- str
+- string
+- bool
+- boolean
+- float
+- int
+- integer
+- list
+- array
+- tuple
+- dict
+- map
+- json
+
+### GetEncryptedValue
+```go
+func (env *EnvData) GetEncryptedValue(which, kind string, defaultValue interface{}, decryptionKey string) (interface{}, error)
+```
+Same structure as above, except, you may provide a decryption key. It supports `base64` and `AES`.
+Usage:
+ - for `base64` hashes, simply call it without providing an encryption key
+ - for `aes` encryption, provide the basee64 hash +  the encryption key
+
+### Error Handling
+```go
+func (env *EnvData) GetError() string
+```
+Any errors that may have occured can be captured with this.
+
+## Variable Substitution
+The package supports variable substitution, allowing you to reference other environment variables within the .env file. For example:
+```bash
+API_URL=https://${API_HOST}:${API_PORT}/api
+```
+The values will be replaced with the ones found in other env files.
