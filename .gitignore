@@ -67,7 +67,3 @@ Desktop.ini
 # Coverage files
 *.cover
 *.cov
-
-# Ignore dependencies
-go.sum
-go.mod
